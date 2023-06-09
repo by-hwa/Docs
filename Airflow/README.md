@@ -1,3 +1,12 @@
+# Index
+
+1. [Airflow](#1-airflow)
+2. [Install Airflow](#2-airflow-설치)
+3. [DAG](#3-dag)
+4. [DAG 작성법](#4-dag-작성법)
+
+
+
 # 1. Airflow
 #### Airflow 는 어떠한 일련의 작업 프로세스 (ex. ETL...) 를 관리하는 도구이다.
 #### 여기서 말하는 관리란 workflow 작성, 스케줄링, 모니터링이다.
@@ -416,7 +425,7 @@ docker-compose up airflow-init
 #### password - required
 #### Schema - 지정
   
-# 3.DAG
+# 3. DAG
 #### 기본적으로 DAG는 airflow/dags 폴더내에 있는 파이썬 파일을 읽어 온다. 
 #### airflow 폴더내에 dags 폴더가 없다면 생성해주도록 한다.
 #### DAG는 비순환 단방향 그래프로 스케줄러에 의해 일정 시간마다 실행될 workflow 이다.
@@ -483,7 +492,7 @@ with DAG(
   
 ![image](https://github.com/by-hwa/Docs/assets/102535447/e7b20c48-ef46-4454-b501-a717ec2d3d7e)
 
-# 4.DAG 작성법
+# 4. DAG 작성법
 #### DAG는 Operator 로 task를 구성한다.
 
 ## Operator
