@@ -32,7 +32,30 @@
 #### 이미지에서 평균값을 빼는것 말고는 다른 전처리는 수행하지 않았고, RGB값을 가지는 픽셀들로 훈련을 진행했다.
 
 ## 3. The Architecture
-### 3.1
+#### 요약된 구조는 Figure 2. 를 참고하면 된다.
+#### 8개의 훈련된 레이어로 구성되어있고, 5개의 Convolution 레이어, 3개의 Fully-connected 레이어로 구성되었다.
+#### 중요도에 따라 섹션 3.1~4의 순서대로 정렬했다.
+
+### 3.1 ReLU Nonlinearity
+<img width="412" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/d285d64e-db22-49be-95ca-f3623e5506c5">
+Figure1 <br> ReLUs(solid line), tanh(dashed line) <br> CIFAR-10 데이터에 대해 6epoch 만에 error rate 25%를 달성했고, 어떠한 정규화도 사용하지 않았다. <br>ReLU 함수가 수렴함수보다 빠르게 학습하는것을 알 수 있었다.
+
+#### 활성함수로 tanh 함수 또는 Sigmoid 함수를 주로 사용했다. 경사하강법을 사용한 훈련시간 측면에서 이 saturating nonlinearities 함수들이 non-saturating nonlinearities max(0,x) 함수보다 느리다. Nair and Hinton에 의해 non-saturating nonlinearities 함수를 Rectified Linear Units, ReLU 라 명명했다.
+#### ReLU가  tanh 함수보다 빠른 학습능력을 보였다. Figure 1.
+#### 전통적인 방식을 고려하지 않은 것은 아니다. 예를 들면 avg pooling을 사용한 데이터셋 Caltech-101에서 좋은 성능을 보였다. 그러나, 우리의 목표는 Overfitting을 방지하는 것 이기때문에 Overfitting이 관측되는 효과는 train set을 활동을 가속화 하는 것과 다르다.
+
+### 3.2 Training on Multiple GPUs
+#### GTX 580 GPU 는 3GB의 메모리를 가지고 있다. 이는 학습시에 네트워크의 크기를 결정한다. 하나의 GPU로 120만개의 데이터를 학습하기에는 벅찼고 2개의 GPU를 사용하였다.
+#### 현재의 GPU는 병렬처리를 하기에 적합하다, GPU간 서로 주메모리에 접근없이 서로 메모리에 접근하고 읽고쓰기가 가능하다. GPU마다 커널(뉴련)의 반을 놓았다.
+#### 연결패턴을 선택하는것은 Cross-Validation시에 문제가 되지만, 이것은 계산 양의 비율을 정확하게 조정해준다.
+####  "columnar" CNN 아키텍처와 유사하지만, 우리의 아키텍처는 독립적이지 않고 2개의 GPU의 사용으로 에러를 낮췄다.
+
+### 3.3 Local Response Normalization
+#### ReLU는 Saturating을 막기위해 정규화를 할 필요가 없다. 그러나 우리는 다음에 나오는 지역 정규화 방법이 일반화를 돕는다는 사실을 발견했다.
+#### 특정층에 ReLU를 적용한 후 이 정규화를 적용했다.
+#### Jarrett의 지역 대비 정규화와 일부분 닮았지만, 여기에선 평균을 빼지 않기 때문에 '밝기 정규화'라고 부른다. 또 유의미한 에러율의 감소를 보였다.
+
+### 3.4 
 
 ## 4. Reducing  Overfitting
 ## 5. Detail of Learning
