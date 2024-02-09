@@ -49,6 +49,29 @@
 #### Transition 이후 Environment는 새로운 관측을 하고, Environment는 응답에 대한 Reward signal을 제공하며 이 응답함수를 Reward Function이라고 한다.
 #### Transition 과 Reward Function을 Environment의 모델 이라고 한다.
 
+#
+
+<img width="522" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/b83b758f-b693-4b37-b1f6-f669f03f5404">
+
+#### Environment는 어떠한 방식으로든 Agent의 action에 반응하며, Agent의 무응답에도 반응한다. 그러나 결국에는 불확실한 내부 프로세스가 있다.
+#### MDP에서 상호작용하는 Environment의 성질을 나타내려면 State, Observation, Action, Transition Function, Reward Function을 알아야한다.
+
+### Agent-environment interaction cycle
+#### Envionment는 일반적으로 잘 정의된 테스크이며, 이 테스크의 목표는 Reward signal을 통해 정의하는 것이다. 보상신호는 많거나 적을 수 있다.
+#### Envionment를 설계할때, Reward Function은 Agent를 원하는 방향으로 학습 시키는 좋은 방법이다.
+#### Agent에게 많은 보상신호와 지도를 하였을때, 더 빠르게 학습을 수행하며 많은 bias가 주입되고 돌발 행동은 하지 않게 된다.
+#### 하지만 Agent에게 적은 보상신호 와 부족한 지도를 하게된다면, 새로운 행동을 할 기회가 많아지지만 학습시간이 길어지게 된다는 단점이 있다.
+#### Agent와 Environment 간의 상호작용의 각 사이클을 Time step이라고 하며 이는 시간의 단위이다.
+#### 각 Timestep마다 Agent는 Envionment를 관측, Action 수행, 새로운 Observation과 reward를 받는다. 알고있어야 할 점은 음수의 Reward도 Reward인 점이다.
+#### Observation(or state), Action, Reward, New observation(or New state)의 튜플을 Experience tuple이라고 한다.
+#### Agent가 해결해야할 문제는 자연스러운 엔딩이 있는 문제일 수도 있고 아닐수도 있다. 자연스러운 엔딩을 가진 테스크의 경우 Episodic Task라고 하며 그렇지 않고 지속적으로 학습을 수행해야하는 경우, Continuing Task 라고한다.
+#### Episodic task 의 시작과 끝까지의 Time step순서를 Episode라고 하며, Agent는 테스크를 해결하기 위한 학습을 위해 몇가지 time step과 episode를 가진다.
+#### 단일 episode에 대한 수집된 Reward의 합을 Return이라고 하며, Agent는 종종 최대한의 Return을 얻도록 설계된다. Continuing Task에도 종종 Time step limit이 추가되며, episodic task로 볼 수 있게되며 Agent는 최대한의 Return을 얻을 수 있다.
+#### 모든 Experience tuple은 Agent를 학습하고 성능을 개선하는데 사용될 수 있고 Agent는 학습을 위한 하나이상의 구성요소가 있다.
+#### Agent는 관측에서 행동으로 부터 학습을 맵핑할 수 있고 이를 Policies라고 한다. 또한 Model이라 불리는 새로운 Observation 그리고/또는 Reward으로 부터 매핑학습된다. 그리고 Value function이라 불리는 보상추정관측으러 부터 맵핑학습된다.
+
+### MDPs:The engine of the environment
+
 
 
 Reference from grokking Deep Reinforcement Learning
