@@ -70,8 +70,66 @@
 #### 모든 Experience tuple은 Agent를 학습하고 성능을 개선하는데 사용될 수 있고 Agent는 학습을 위한 하나이상의 구성요소가 있다.
 #### Agent는 관측에서 행동으로 부터 학습을 맵핑할 수 있고 이를 Policies라고 한다. 또한 Model이라 불리는 새로운 Observation 그리고/또는 Reward으로 부터 매핑학습된다. 그리고 Value function이라 불리는 보상추정관측으러 부터 맵핑학습된다.
 
-### MDPs:The engine of the environment
+#
+## MDPs:The engine of the environment
+#### 문제의 설명으로 부터 나타내어지는 MDP 는 Python Dictionary로 만들어진다.
 
+#
+### State:Specific configurations of the environment
 
+<img width="483" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/6dc5fdf8-d9f6-40f3-ba5e-84fcf9049275">
+
+#### State는 문제의 독특하고 고유한 구성이다. 모든 가능한 state의 집합을 state space라고 하며, 집합 S 라고 정의한다.
+#### State space는 무한할 수도 있고 유한할 수도 있다. 그러나 주의 해야할 점은 단일 state를 구성하는 변수의 집합과 다르다. 결국 S 는 집합의 집합이고, 내부 집합은 State를 나타내는 변수의 수는 유한하고 동일한 수를 가져야하고 외부 집합은 내부 집합의 요소 타입에 따라 무한하거나 유한 할 수 있다.
+#### 무한한 state space와 연속 변수는 유클리안 거리를 가질 수 있고 상태를 정의하는 다양한 변수를 가질 수 있고 다양한 조합의 변수를 가져야 한다.
+#### MDP는 모든 State를 관측한다. 이 말은 각 time step마다 내부의 state를 관측한다는 말이며 즉, 관측과 state가 동일하다.
+#### Partially observable Markov decision processes(POMDPs)는 여전히 환경의 내부 state를 의존하는 관측하는 환경의 모델링된 더 일반적인 프레임 워크로 오직 내부의 state를 관측하는 것이 유일하며 부분저그로 관측한다.
+#### State는 다른 모든 state를 독립하게 만드는 모든 변수를 포함한다. 그러므로 Agent의 현재의 state가 다음이 가능한 state인지를 알아야한다. 즉, Agent가 방문한 기록은 필요하지 않다는 것이다.
+
+#
+<img width="498" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/98bdcd16-6a40-4297-92eb-70209f55469a">
+
+#### 다음 state에 대한 확률은 현재의 state와 action으로 알 수 있고, 이전의 상호작용의 기록(state)과 독립적이다. 이는 MDPs의 Markov의 성질이라 불리는 memoryless성질이다.
+#### 동일한 action a를 하였을때, state s에서 다른 state로 두번에 걸쳐 이동할 확률은 이전 state나 해당지점에서 발생한 Action과 관계없이 동일하다.
+#### 대부분의 RL, DRL모델은 Markov 가정의 장점을 활용하고 Agent가 견고하게 유지되도록 필요한 변수를 제공해야 한다.
+#### 더 많은 변수를 제공하면 학습시간은 증가하고 변수가 적어진다면 학습시간이 낮아진다. 또한 정보가 부족하면 유용한 학습이 어렵니다.
+
+#
+<img width="484" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/34272f77-2c2e-41ef-a91a-204fe94b7558">
+
+#### MDP의 모든 state의 집합은 S+로 표시되며, Si라고 표시되는 Starting or Initial state의 집합은 S+집합의 부분 집합이다.
+#### MDP와 상호작용 하려면 확률분포로 부터 SI를 만드러야 한다. 이 분포는 무엇이든 될 수 있지만 훈련을 통해 수정된다. 즉, 훈련의 처음부터 끝까지 그리고 Agent의 평가에 이르기까지의 확율은 동일해야한다.
+#### Absorbing state 혹은 Terminal state라 불리는 특이한 state가 있으며, 모든 Non-terminal state의 집합을 S라 나타낸다.
+#### 모든 translation이 진행되는 single terminal state를 생성하는 것이 관행적이나 종종 더 많은 Multiple terminal state를 보게 될 것 이다.
+#### Terminal state는 특별하게도 여기서의 모든 행동은 100% 확률로 자신에게로 전환되어야 하며, 이 Transition에 Reward는 주어져서는 안된다. 이는 terminal state에 대한 설명이 아닌 transition에 대한 설명이다.
+
+#
+### Actions:A mechanism to influence the environment
+
+<img width="541" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/d0d95aab-a433-40ce-ac31-0f99c1a3e824">
+
+#### MDP는 상태에 따라 달라니는 행동집합 A를 가진다. 즉, State에서 허락하지 않은 행동이 있을 수 있음을 말한다. 
+#### 사실 A는 state를 인수로 하는 function이다. 즉, A(s) 이 function은 S에 대해 가능한 행동의 집합을 반환한다. 필요시 State space를 상수로 정의할 수 있으며 즉, 모든 상태에서 모든 행동이 가능함을 의미한다.
+#### 또한 주어진 state에서 action을 거부하려면 모든 action-state 쌍의 transition을 0으로 설정할 수 있고 또는 state s와 action a의 모든 전이를 동일한 state s로 설정하여 action a를 중재하지 않거나 작동하지 않는 것으로 표시 할 수 있다.
+#### State space와 마찬가지로 action space 또한 유한하거나 무한하며 single action 집합은 하나 이상의 요소를 포함하고 유한하다.
+#### 환경은 미리 알고있는 모든 행동가능한 집합을 알려준다. Agent는 결정론 또는 확률적인 행동을 선택할 수있다.
+#### 하지만 agent의 action에 확률적 또는 결정론으로 반응하는 것은 아니다 Agent는 Look up table 이나 state 확률분포를 참고한다.
+
+#
+### Transition function:Consequences of agent actions
+
+<img width="504" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/ca2fba8e-f96f-4fd3-9a00-c86886749ab5">
+
+#### 환경이 action에 따른 응답으로 어떤 변화를 나타내는지에 대한 것을 State-transition probailities라 하며 간단히 Transition function, T(s,a,s')로 표현한다.
+#### T는 s,a,s'를 확률에 맵핑하고, s,a,s' 을 전달하면 action a를 하였을때 상응하는 s에서 s'으로 가는 전환의 확률을 반환한다.
+#### 또한 T(s,a)로 나타낼수 있고 key:s', value:probablity를 반환한다. 또한 T는 state s에서 action a를 선택함에 따라 상호작용 주기에서 어떻게 진화할지 결정하는 확률분포 P(•|s, a)를 설명한다.
+
+#
+<img width="505" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/fc24f8eb-c9a1-491e-9f7e-50cb32263b6b">
+
+#### RL, DRL 알고리즘의 핵심적인 가정중 하나는 이 분포가 정상적이라는 것 이다. 즉, 높은 확률적 transition이 있을 수 있지만, traning or evaluation 중에는 변하지 않는다.
+#### Markov 가정과 마찬가지로 정사성 가정 또한 종종 어느정도 완화된다.
+#### 그러나 대부분의 agent가 적어도 정상성을 띄는 환경과 상호작용 하는 것은 중요하다.
+#### FL환경에서는 1/3 확률로 의도대로 transition되고, 2/3 확률로 직각방향으로 튕겨난다.
 
 Reference from grokking Deep Reinforcement Learning
