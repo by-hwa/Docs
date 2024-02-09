@@ -154,6 +154,35 @@
 #### Indefinite planning horizon에서 episode는 시작과 종료사이의 모든 상호작용을 모은다.
 
 #
-#### Discount:The future is uncertain, value it less
+### Discount:The future is uncertain, value it less
+
+<img width="456" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/db32f400-e55a-4e94-a12d-8fe2422965fc">
+
+#### Infinite horizon task에 time step의 무한한 시퀀스가 가능하기 때문에, 시간의 흐름에 따른 보상 하락이 필요하다.
+#### 미래의 보상의 할인을 지수함수로 할인하기 위해 1 보다 작은 양의 실수를 사용해야한다.
+#### 이 감소율을 Discount factor or Gamma라고 하며, 이 Factor는 시간에 따른 보상의 중요성을 조절한고 Return estimate의 분산을 줄이기 위해 사용한다.
+#### 미래가 불확실 하며, 미래로 갈 수록 가치 추정에 더 많은 확률 성분과 분산이 축적되기 때문에 discount factor가 가치 추정에 미치는 영향을 줄이고 학습을 안정화 시킨다.
+#### Gamma는 MDP정의의 한 부분이다. 그러나 우리는 종종 주어진 환경에 사용하기 위한 적절한 gamma 값의 가이드가 없을 수 있다. 왜냐하면 gamma는 분산을 줄이기 위한 하이퍼 파라미터로 agent의 몫이다.
+#### 또한 gamma는 agent에게 "긴급함"을 심어주기 위해 사용되기도 한다.
+
+<img width="495" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/55161543-9f61-4ae4-a816-db698a4e16a1">
+
+#
+### Extensions to MDPs
+
+* #### Partially observable Markov decision process (POMDP): When the agent cannot fully observe the environment state.
+* #### Factored Markov decision process (FMDP): Allows the representation of the transition and reward function more compactly so that we can represent large MDPs.
+* #### Continuous [Time|Action|State] Markov decision process: When either time, action, state or any combination of them are continuous.
+* #### Relational Markov decision process (RMDP): Allows the combination of probabilistic and relational knowledge.
+* #### Semi-Markov decision process (SMDP): Allows the inclusion of abstract actions that can take multiple time steps to complete.
+* #### Multi-agent Markov decision process (MMDP): Allows the inclusion of multiple agents in the same environment.
+* #### Decentralized Markov decision process (Dec-MDP): Allows for multiple agents to collaborate and maximize a common reward.
+
+#
+### Putting it all together
+#### Transition function 과 reward function으로 State 및 action space를 추론하여 완전한 MDP를 만들 수 있다.
+<img width="484" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/565c7802-6a80-4bc5-b661-17265263c668">
+
+
 
 Reference from grokking Deep Reinforcement Learning
