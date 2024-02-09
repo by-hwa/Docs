@@ -67,7 +67,23 @@
 #### 예상되는 Return을 추정하는데 도움이 되는 Value Function이 있다.
 #### 주어진 MDP에 대한 하나의 최적 Value function이 있지만 일반적으로는 여러 value function있다.
 
+#
 ### Policies:Per-state action prescriptions
+#### Agent는 확률적인 환경에서 π라고 표시되는 정책을 찾을 필요가 있다.
+#### 정책은 non-terminal state에서 수행할 action을 규정하는 function이다.
+#### 정책은 확률론적 일 수도 있다. action또는 확률 분포를 알려준다.
+
+<img width="426" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/c351626c-c3b5-4d6d-a1e5-50152cd17174">
+
+#### 이 정책을 보자마자 이 정책이 얼마나 좋은지를 생각해 볼 필요가 있다.
+
+<img width="507" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/b4df6043-f50a-4e48-b7b9-8dfd47c89a28">
+
+#### 정책에 번호를 매길 수 있다면, 어느 정책이 더 나은지 비교할 수 있을 것이다.
+
+#
+##
+
 
 
 
