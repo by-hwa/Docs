@@ -38,7 +38,17 @@
 ### The Environment:Everything else
 #### 대부분의 현실의 의사결정 문제를 RL Environment로 압축할 수 있다.
 #### RL에서 Decision-making process를 표현하는 일반적인 방법은 수학적 프레임 워크인 Markov decision processes(MDPs)를 이용하여 문제를 모델링하는 것이다.
-#### RL에서 모든 Environment의 MDP는 블랙박스로 진행된다.
-#### 
+#### RL에서 모든 Environment의 MDP는 블랙박스로 진행되고 Environment는 문제와 관련된 변수의 집합으로 표현된다.
+#### State space는 변수의 집합이 취할 수 있는 모든 가능성을 가진 값의 조합이며, State는 주어진 시간에 변수가 취하는 특정한 값의 집합니다.
+#### Agent는 실제 environment의 state에 접근할 수도 있고 못 할 수도 있다.
+#### Agent는 environment로 부터 무언가를 관측할 수 있으며, 주어진 시간에 Agent가 인지한 변수의 집합을 Observation이라고 하고 이 변수 들의 가능한 값의 조합을 Observation space라고 한다.
+#### State와 Observation 사이의 다른점도 인지해야 한다. 그러나 RL에서 용어를 혼용해서 사용하는 경우가 있긴하다.
+#### 모든 state에서 환경은 agent가 선택가능한 action의 집합을 만든들고 이는 종종 모든 스테이드에서 같은 action의 집합을 가지기도 한다. 모든 state에 대해서 가능한 모든 action의 집합을 Action space라고 한다.
+#### Agent는 action을 통해 Environment에 영향을 끼치려고 시도하고, Environment는 agent의 action에 반응하여 state를 변화하려한다.
+#### 이 transition에 대한 응답에 관한 함수를 Transition Function이라고 한다.
+#### Transition 이후 Environment는 새로운 관측을 하고, Environment는 응답에 대한 Reward signal을 제공하며 이 응답함수를 Reward Function이라고 한다.
+#### Transition 과 Reward Function을 Environment의 모델 이라고 한다.
+
+
 
 Reference from grokking Deep Reinforcement Learning
