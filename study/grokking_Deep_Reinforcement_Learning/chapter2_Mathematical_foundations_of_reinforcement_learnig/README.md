@@ -132,4 +132,28 @@
 #### 그러나 대부분의 agent가 적어도 정상성을 띄는 환경과 상호작용 하는 것은 중요하다.
 #### FL환경에서는 1/3 확률로 의도대로 transition되고, 2/3 확률로 직각방향으로 튕겨난다.
 
+#
+### Reward signal:Carrots and sticks
+#### Reward function R은 transition tuple s,a,s'을 scalar로 매핑하고 transition에 대한 선호도를 수치신호로 제공한다.
+#### Signal이 양수 일때는 Reward를 소득이나 상금으로 생각할 수있지만 음수 일대는 비용, 처벌, 벌점으로 생각한다. 그러나 음수든 양수든 모두 Reward로 표현된다.
+#### Reward function은 명시적으로 R(s,a,s')으로 표현할 수 있고 필요에 따라 R(s,a), R(s)로 사용할 수 있다. 그러나 가장 명시적인 방법은 R(s,a,s')이다.
+#### 또한 R(s,a,s')을 통해 R(s,a)를 계한할 수있고, R(s,a)로 R(s)를 계산할 수 있다. 하지만 그 역은 불가능 하다.
+<img width="499" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/276c43b6-b12f-486b-bd0b-c2a7a43f0ec9">
+
+#
+### Horizon:Time changes what's optimal
+#### MDP에서는 시간을 잘 표현할 수 있다. epoch, cycle, iteratiion, interaction으로 불리는 time step은 모든 주체와 이산화된 시간을 Global clock으로 동기화 하는 것이다.
+#### Episodic task는 clock이 멈추거나 agent가 terminal state에 도달하면 종료된다.
+#### Continuing task는 무한하며 종료되는 state 없이 수동으로 종료시 까지 계속된다.
+#### Agent의 관점에 따라 Episodic & Continuing task는 정의되며 이것을 planning horizon이라 한다.
+#### Finite horizon 은 agent가 유한한 time step에서 종료 될 것을 알고있는 planning horizon이다. Infinite horizon은 Agent가 time step의 제한을 알지못하며 무한한 time step을 계획한다.
+#### Planning horizon의 특별 케이스를 greedy horizon이라한다.
+#### 이러한 작업은 여전히 episodic 일 수 있으며 agent의 관점에 따라 planning horizon은 무한하다. 이러한 타입의 무한 planning horizon을 indefinte horizon task라고하고 agent는 무한히 계획하지만 환경에 의해 상호작용을 중지 할 수 있다.
+#### Agent가 루프에 빠지고 종료되지 않을 확률이 높은 작업의 경우, 일반적인 관행으로 time step 기반의 가상 terminal을 추가한다. 이 케이스는 time step limit terninal state를 특별히 다뤄야한다.
+#### Episode, trial, period, state의 단게로 episodic task의 시작부터 끝까지의 연속적인 시간순서를 참조한다.
+#### Indefinite planning horizon에서 episode는 시작과 종료사이의 모든 상호작용을 모은다.
+
+#
+#### Discount:The future is uncertain, value it less
+
 Reference from grokking Deep Reinforcement Learning
