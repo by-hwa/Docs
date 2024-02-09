@@ -6,12 +6,12 @@
 ## In this chapter
 * #### Deep Reinforcement Learning(DRL) 이 무엇인지 그리고 다른 머신러닝과의 접근법이 어떻게 다른지를 다룬다.
 * #### 최근 DRL의 발전과 이를 사용한 다양한 문제의 해결법을 다룬다.
-* #### 이책의 최대한의 활용방법을 다룬다.
+* #### 이책의 활용방법을 다룬다.
 
 
 ## What is deep reinforcement learning?
 #### Deep reinforcement learning(DRL) 은 지능이 필요한 문제를 해결할 수 있는 인공지능의 Mahcine learning 접근법이다.
-#### DRL의 특징은 sequential, evaluative and sampled feedback을 동시에 받아들여 비선형 함수를 근사화하여 학습하는 것이다.
+#### DRL의 특징은 sequential, evaluative and sampled feedback을 동시에 받아들여 Trial and Error로 비선형 함수를 근사화하여 학습하는 것이다.
 #
 ### Deep reinforcement learning is a machine learning approach to artificial intelligence
 <img width="618" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/dcca0292-5a85-4569-889a-f6e04c24bb49">
@@ -38,5 +38,7 @@
 
 #### 핵심은 DRL을 이용하여 문제에 접근하는 것이다. 지능이 있는 기계를 만드는 것이 AI분야의 해결해야할 문제인데 이 문제의 하나의 해결법중 하나로 DRL이 언급된다.
 
-
+## The past, present, and future of deep reinforcement learning
+## The suitability of deep reinforcement learning
+## Setting clear two-way expectations
 Reference from grokking Deep Reinforcement Learning
