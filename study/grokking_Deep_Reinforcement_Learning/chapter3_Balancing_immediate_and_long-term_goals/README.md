@@ -82,7 +82,22 @@
 #### 정책에 번호를 매길 수 있다면, 어느 정책이 더 나은지 비교할 수 있을 것이다.
 
 #
-##
+## State-value function:What to expect from here?
+
+#### 주어진 policy state에 번호를 매기는 것은 정책을 비교하는데 도움이 된다.
+#### MDP 정책이 주어졌을 때, single state(대부분 Start state)로 부터 시작하여 예상되는 Return을 게산할 수 있어야 한다.
+
+<img width="533" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/57e5c447-736e-428a-85de-56b2b72326b8">
+
+#### 1/3 -> +1, 1/3 -> state10, 1/3 -> state14 1/3은 답의 일부이지만, Reward를 얻지 못하는 2/3를 고려한다.
+#### 우리가 가지고 있지않은 다른 State(여기에선 10, 14)의 값의 의존성 때문에 Go-get-it 정책을 따를때 state 14의 가치를 계산하기 쉽지 않다.
+#### 앞서 Return은 reward의 합이라 정의했다.
+#### Agent가 따르는 정책에 관심을 갖지 않고도 획득한 모든 reward를 합하여 Return을 계산할 수 있다.
+#### 그러나 지금 알고자 하는 것은 정책 π를 따를때 예상되는 Return이다.
+#### 확률론적 환경에 있기때문에 환경이 우리 정책에 반응하는 모든 가능한 방법을 고려해야한다.
+
+
+
 
 
 
