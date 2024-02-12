@@ -1,5 +1,3 @@
-<img width="498" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/08f08d93-d107-4e11-8269-68bc4b7a6c71"><img width="497" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/ef75850a-dec9-44d6-871d-b0570fab7d80"># Balancing immediate and long-term goals
-
 ## In this chapter
 #### Sequential feedback을 통한 학습의 어려움과 단기, 장기 목적의 적절한 벨런스를 찾는 법을 다룬다.
 #### MDP로 모델링된 순차적 의사결정 문제에서 행동의 최적의 정책 알고리즘을 개발한다.
