@@ -1,4 +1,4 @@
-# Balancing immediate and long-term goals
+<img width="498" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/08f08d93-d107-4e11-8269-68bc4b7a6c71"><img width="497" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/ef75850a-dec9-44d6-871d-b0570fab7d80"># Balancing immediate and long-term goals
 
 ## In this chapter
 #### Sequential feedback을 통한 학습의 어려움과 단기, 장기 목적의 적절한 벨런스를 찾는 법을 다룬다.
@@ -96,9 +96,60 @@
 #### 그러나 지금 알고자 하는 것은 정책 π를 따를때 예상되는 Return이다.
 #### 확률론적 환경에 있기때문에 환경이 우리 정책에 반응하는 모든 가능한 방법을 고려해야한다.
 
+#
+#### 정책 π를 따를때 state s 의 value를 정의한다.
+#### s의 value은 agent가 s에서 정책 π를 따랐을 때 예상되는 return 이다.
+#### 모든 state에 대해서 이를 계산하면, state-value function, V-function, value function(모두 같은 의미)을 얻을 수 있다.
+#### 이는 state s에서 정책 π를 따를 때의 예상 return이라고 한다.
 
+<img width="497" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/ad9b9608-505f-432b-bea3-f5bf36a594f0">
 
+#### State의 value가 다른 많은 state value에 어떻게 재귀적으로 의존하는지 주목해야한다.
+#### 이 value는 원래 state를 포함하여 다른 state value에 의존 가능하다.
+#### 다음 섹션에서는 이러한 방정식을 반복적으로 해결하고 FL이나 실제와 같은 다른환경에서든 어떤 state-value function을 얻을 수 있는 알고리즘을 살펴볼 때, state와 연속적인 state 사이의 재귀 관계를 다시 설명한다. 또한 RL agent에서 일반적으로 볼 수 있는 다른 구성요소를 탐색하고 이 value를 계산하는 법을 배운다.
+#### state-value function은 value function, V-fuction, Vπ(s)로도 표현된다.
 
+#
+### Action-value function:What should i expect from here if i do this?
+#### 자주 물어보아야 할 질문은 state의 value가 아니라 state에서 action을 했을 때의 value이다.
+#### 각 정책의 action중 어떤 행동이 더 나은지, get-it-go 의 right or carefully 의 down?
+#### 동일한 정책하에서 다른 action들을 비교하여 더 나은 행동을 고를 수 있고 정책을 개선할 수 있다.
+#### Action-value function은 Q-function or Qπ(s,a)로 알려져 있다.
+#### 이 Function은 agent가 state에서 action을 수행한 이후 정책 π를 따랐을 때의 예상되는 return을 정확히 예측한다.
+#### Control problem이라 불리는 정책 개선 문제를 다룰때, action-value function이 필요하다.
+#### MDP 없이 단지 모든 state의 값 만으로 어떻게 action을 결정할 수 있나요.
+#### V-function은 환경의 dynamics를 잡을 수 없지만 Q-function은 환경의 dynamics를 약간 포착하고 MDP없이 정책을 개선 할 수 있다.
 
+<img width="498" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/a40ccb25-28db-4aaa-a33f-49544ff0e4ad">
 
+#
+### Action-advantage function:How much better if I do that?
+#### Action-advantage function은 action-value function과 state-value function에서 파생되었다.
+#### 이 function은 advantage function, A-function, Aπ(s,a)라고도 알려져 있다.
+#### 앞선 function들과의 차이점은 action-value function과 state-value function의 차이이다. (q-v)
 
+<img width="495" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/423fb938-1e1f-4e65-8a6f-f8839234119d">
+
+#### Advantage function은 action a를 수행하는 것이 정책π를 따르는 것 보다 얼마나 더 나은지를 설명한다.
+#### 기본 action보다 action a를 선택하는게 이점이다.
+#### value는 정책에 따라 달라진다.
+#### Qπ(s,a)는 State s에서 action a를 한후 정책π를 따른다고 가정한다.
+
+<img width="527" alt="image" src="https://github.com/by-hwa/Docs/assets/102535447/80f74271-7cd2-444b-8856-4ce5ef0e7415">
+
+#
+### Optimality
+#### Policies, State-value function, Action-value function, action-advantage function은 행동을 설명, 평가, 개선하는데 사용하는 구성요소이다.
+#### 이 구성요소들이 최적이 되었을 때, Optimality라고 한다.
+#### Optimal policy는 매 state에서 다른 어떤 policy보다 크거나 같은 예상 return값을 얻을 수 있다.
+#### Optimal state-value function은 모든 state에 대한 모든 policies에 걸쳐 최대의 value를 얻는 state-value function이다.
+#### Optimal action-value function은 모든 state-action pair에 대한 모든 policies들에 걸쳐 최대의 value를 얻는 action-value function이다.
+#### Optimal action-advantage function은 비슷한 패턴을 따르지만, 어떠한 행동도 Optimal state-value function으로 부터 어떠한 advantage를 얻을 수 없기 때문에 모든 state-action pair에 대한 optimal advantage function은 0보다 작거나 같다.
+#### 주어진 MDP에대해 최적 정책은 하나보다 많을 수 있다. 하지만 Optimal state-value function, Optimal action-value function, Optimal action-advantage function은 하나다.
+#### Optimal V-function을 안다면 MDP를 이용하여 optimal Q-function에 대한 one-step search를 수행하여 Optimal policy를 얻을 수 있다.
+#### Optimal Q-function을 안다면 MDP없이 단지 action에 최대값을 취함으로 V-function을 알 수 있다.
+#### 그리고 action에 대해 argmax를 취함으로써 최적의 Q-function을 사용하여 Optimal policy를 얻을 수 있다.
+
+## Planning optimal sequences of actions
+
+Reference from grokking deep reinforcelearning
